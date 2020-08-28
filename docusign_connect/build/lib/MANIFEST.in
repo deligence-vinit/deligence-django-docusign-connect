@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+include config.json
+recursive-include app *
+recursive-include docusign *
+global-exclude *.pyc

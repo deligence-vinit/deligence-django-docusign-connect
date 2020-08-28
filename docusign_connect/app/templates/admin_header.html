@@ -1,0 +1,29 @@
+{% block header %}
+<div class="pb">
+    <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light d-flex justify-content-between">
+          <a class="navbar-brand" href="/">Django-Docusign</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+    <!-- Right navbar links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+           <!--left items  -->
+        </ul>  
+    <ul class="navbar-nav ml-auto">
+        <!-- right items -->
+        <li class="nav-item" >
+            <div style="float: right;"><a class="nav-link" href="/detailedView">Manage Config</a></div></li>
+        <li class="nav-item" >
+            <div style="float: right;"><a class="nav-link" href="/files">Manage Files</a></div></li> 
+        <li class="nav-item" >
+            <div style="float: right;"><a class="nav-link" href="/change_password">Change Password</a></div></li>    
+    <li class="nav-item " >
+        <div style="float: right;"><a class="nav-link" href="/logout">Logout</a></div></li>  
+    </ul>
+    </div>
+    </nav>
+    
+    </div>
+    {% endblock %}

@@ -1,0 +1,55 @@
+Metadata-Version: 1.2
+Name: deligence-django-docusign-connect
+Version: 1.2
+Summary: installable django app to integrate with docusign APIs.
+Home-page: https://github.com/chvinit/django-docusign-insta-connect.git
+License: MIT
+Description: Docusign Connect
+        
+        
+        Docusign Connect is a Django app to instantly connect django project with docusign e-signing platform by APIs.
+        This Package comes with build in admin panel to sign and maintain files & 
+        docusign api values can be added by admin panel.
+        
+        Quick start
+        
+        1. Add "crispy_forms","app" & "docusign" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'crispy_forms',
+                'app',
+                'docusign',
+                ...
+            ]
+        2. Add line : AUTH_USER_MODEL='app.CustomUser'  to setting.py
+        3. Add line : X_FRAME_OPTIONS = 'ALLOWALL' to setting.py
+        4. Include the app URLconf in your project urls.py like this::
+        
+            path('', include('app.urls')),
+        
+        5. Run ``python manage.py makemigrations`` to create the migrations.
+        6. Run ``python manage.py migrate`` to create the app models.
+        7. Run ``python manage.py createsuperuser`` to create admin username & password to login.
+        8. Start the development server and visit http://127.0.0.1:8000/manage/
+           to manage files & settings.
+        
+        9. Visit http://127.0.0.1:8000/form/ to sign document.
+        
+        * PyPI page: https://pypi.org/project/deligence-django-docusign-connect/
+        * Bugtracker: https://github.com/deligence-vinit/deligence-django-docusign-connect/issues
+        * Code repository: https://github.com/deligence-vinit/deligence-django-docusign-connect
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6

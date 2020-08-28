@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block extracss %}
+<style>
+
+td{
+    min-width: 100px !important;
+}
+.modal-content embed{
+        margin: 0 auto;
+        display: block;
+    }
+    body
+{
+    counter-reset: Count-Value;
+    background-color:#e9ecef;
+}
+table
+{
+    border-collapse: separate;
+    background-color: #ffffff !important;
+}
+tr td:first-child:before
+{
+  counter-increment: Count-Value;
+  content:  counter(Count-Value);
+}
+
+</style>
+{% endblock %}
+{% block content %}
+{% include "admin_header.html" %}
+<form method="GET">
+<div class="d-flex flex-row-reverse pr-3">
+  
+<div class="col-lg-6">
+<div class="input-group input-group-md" style="padding:10px 0px;">
+ 
+  <input type="search" id="search" class="form-control form-control-navbar" style="border-radius:20px;margin-right:5px;" value="{% if search %}{{search}} {% endif %}" name="search" placeholder="Search" aria-label="Search">
+  <div class="input-group-append">
+    <button class="btn btn-navbar" style="background-color:darkgray;border-radius: 30px;" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+   </div>
+   <div class="input-group-append pl-2">
+    <button class="btn btn-navbar" style="background-color:darkgray;border-radius: 30px;" type="reset" onclick="clearsearch()">
+      Clear Search
+    </button>
+   </div>
+</div></div></div></form>
+<div style="display: none;">
+<form method="GET">
+  <input type="hidden" id="search" class="form-control form-control-navbar" style="border-radius:20px;margin-right:5px;" name="search" placeholder="Search" aria-label="Search">
+<input type="submit" id="sub">  
+</form></div>
+<div class="d-flex justify-content-center">
+    <!-- Model start -->
+<div class="modal fade pt-3" id="modal-view">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="title"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <embed  id="pdf_view" src="" id="pdf_view" type="application/pdf" width="750px" height="1100px" />
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+            
+        </div>
+        <!-- <div class="modal-footer justify-content-between">
+          <a  class="fas fa-times" href="javascript:void(null);" data-dismiss="modal">close</a>
+          
+        </div> -->
+     
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+<div class="col-lg-8">
+   <div class="table-responsive p-3">
+    <table class="table">
+        <tr>
+          <th>S No.</th><th>Signer's Name</th><th class="pl-3">Action</th>
+            </tr>
+        {% for files in file_list %}
+        <tr><td></td>
+            <td>{{files.name}}</td>
+            <td><a class="fas fa-eye" href="/files/?page={% if page %}{{page}}{% endif %}&search={% if search %}{{search}}{% endif %}&event=view&file={{files.file_name}}"></a>&nbsp;&nbsp;
+            <a class="fas fa-download" href="/getfile/?file={{files.file_name}}" download="{{files}}"></a>&nbsp;&nbsp;
+            <a class="fas fa-trash-alt" onclick="return confirm('Are you sure you want to delete {{files}} ?');" href="/files/?page={% if page %}{{page}}{% endif %}&search={% if search %}{{search}}{% endif %}&event=delete&file={{files.file_name}}"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div></div></div>
+<div class="d-flex justify-content-center">
+{% if file_list.has_other_pages %}
+  <ul class="pagination" style="font-size: 20px;">
+    {% if file_list.has_previous %}
+      <li><a href="?page={{ file_list.previous_page_number }}{% if search %}&search={{search}}{% endif %}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in file_list.paginator.page_range %}
+      {% if file_list.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}{% if search %}&search={{search}}{% endif %}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if file_list.has_next %}
+      <li><a href="?page={{ file_list.next_page_number }}{% if search %}&search={{search}}{% endif %}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+  {% endif %}</div>
+<script>
+    $(document).ready(function(){
+        var x = document.getElementById('modal-data').textContent;
+        if (x == 'activate')
+        {
+        $("#modal-view").modal();
+        viewfile();
+      }
+    });
+    </script>
+  {% endblock %}

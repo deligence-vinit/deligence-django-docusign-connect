@@ -1,0 +1,76 @@
+{% extends "base.html"%}
+{% block extracss %}
+<style>
+body{
+    background-color:#e9ecef;
+}
+
+        #private_key { 
+            display: block; 
+            overflow: hidden; 
+            resize: none; 
+        }  
+</style>
+{% endblock %}
+{% block content %}
+{% include "admin_header.html" %}
+    <div class=" tab_content pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+          <h2>Form</h2>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="record_per_page">Show records per page in manage files:</label>
+              <input type="number" class="form-control" max=200 min=0  onKeyPress="if (this.value.length==3) return false;" id="record_per_page" value="{{record_per_page}}" placeholder="" name="record_per_page" required>
+            </div>
+            <div class="form-group">
+              <label for="account_id">Account Id:</label>
+              <input type="text" class="form-control" maxlength="100" id="account_id" value="{{account_id}}" placeholder="" name="account_id" required>
+            </div>
+            <div class="form-group">
+                <label for="user_id">User Id:</label>
+                <input type="text" class="form-control" maxlength="100" id="user_id" value="{{user_id}}" placeholder="" name="user_id" required>
+              </div>
+              <div class="form-group">
+                <label for="base_url">Base Url</label>
+                <input type="text" class="form-control" maxlength="100" id="base_url" value="{{base_url}}" placeholder="" name="base_url" required>
+              </div>
+              <div class="form-group">
+                <label for="consent_redirect_url">Consent Redirect Url:</label>
+                <input type="text" class="form-control" maxlength="100" id="consent_redirect_url" value="{{consent_redirect_url}}" placeholder="" name="consent_redirect_url" required>
+              </div>
+              <div class="form-group">
+                <label for="auth_server">Auth Server:</label>
+                <input type="text" class="form-control" maxlength="100" id="text" value="{{auth_server}}" placeholder="" name="auth_server" required>
+              </div>
+              <div class="form-group">
+                <label for="integration_key">Integration Key:</label>
+                <input type="text" class="form-control" maxlength="100" id="integration_key" value="{{integration_key}}" placeholder="" name="integration_key" required>
+              </div>
+              <div class="form-group">
+                <label for="base_path">Base Path:</label>
+                <input type="text" class="form-control" maxlength="100" id="base_path" value="{{base_path}}" placeholder="" name="base_path" required>
+              </div>
+              <div class="form-group">
+                <label for="private_key">Private Key:</label>
+                <div id="content">
+                <textarea type="text" class="form-control" id="private_key" name="private_key" placeholder=""  required>{{private_key}}</textarea>
+                </div>  
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+        </div></div>
+        
+    </div>
+    <script> 
+       $('#content').on('change keyup keydown paste cut', 'textarea', function () {
+        $(this).height(0).height(this.scrollHeight);
+    }).find('textarea').change();
+    
+    </script>
+{% endblock %}

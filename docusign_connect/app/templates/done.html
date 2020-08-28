@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="container p-5">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-11 pb-5 text-center" style="font-size: x-large;">
+            Done , Please View, Download or Sign Another PDF...
+        </div>
+    </div>
+    <div class="row content-justify-center">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+            <div class="p-2 text-center"><a href="/form/getfile/?file={{file_name}}" class="btn btn-primary">View PDF</a></div>
+        </div>
+        <div class="col-lg-2">
+            <div class="p-2 text-center"><a href="/form/getfile/?file={{file_name}}" class="btn btn-primary" download="{{file_name}}">Download PDF</a></div>
+        </div>
+        <div class="col-lg-2">    
+            <div class="p-2 text-center"><a href="/form" class="btn btn-primary">Sign Another Document</a></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        {% endblock %}
